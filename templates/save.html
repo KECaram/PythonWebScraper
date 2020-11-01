@@ -1,0 +1,15 @@
+<!-- Keith Caram
+ INFO.305.061: Survey of Python, Perl, and PHP
+ Assignment #5 - Python Web App
+									Program Summary
+This is the the page that gets displayed as the result of a successful save for my python web
+scraping app.
+-->
+{% extends 'index.html' %}
+
+{% block title %}Saved Data{% endblock %}
+
+{% block content %}
+<h3>Save Successful!</h3>
+<p>{{FileName}}.json saved in Directory: {{Path}}</p>
+{% endblock %}

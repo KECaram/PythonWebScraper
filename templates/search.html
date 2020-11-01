@@ -1,0 +1,32 @@
+<!-- Keith Caram
+ INFO.305.061: Survey of Python, Perl, and PHP
+ Assignment #5 - Python Web App
+									Program Summary
+This is the search page for the title search display. It displays either a success or failure
+message based on the results of the search, it also offers to search again, or save all of the
+scraped data.
+-->
+{% extends 'index.html' %}
+
+{% block title %}Saved Data{% endblock %}
+
+{% block content %}
+<h3>{{Result}}</h3>
+{{Validation}}
+<br>
+<h2>Would you like to save all data as a json file?</h2>
+<form action="{{url_for('saveScrape')}}" method="post">
+          <p> Enter file path to save document in: </p>
+          <input type="text" name="save"/>
+          <p> Enter name of save file (no file extension): </p>
+          <input type="text" name="filename"/>
+          <input type="submit" value="Save"/>
+</form>
+<h2>Would you like to search for a different title?</h2>
+<form action="{{url_for('findScrape')}}" method="post">
+          <p> Enter book name: </p>
+          <input type="text" name="find"/>
+          <input type="submit" value="Search"/>
+</form>
+<br>
+{% endblock %}

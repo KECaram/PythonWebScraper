@@ -1,0 +1,33 @@
+<!-- Keith Caram
+ INFO.305.061: Survey of Python, Perl, and PHP
+ Assignment #5 - Python Web App
+									Program Summary
+This is the page that displays the scraped data. It also offers the option to search for specific
+titles from the scraped data, and the option to save all of the scraped data into a JSON file. All
+of the forms have a little bit of data validation. The page redisplays on a failed save.
+-->
+{% extends 'index.html' %}
+
+{% block title %}Data{% endblock %}
+
+{% block content %}
+<h1>{{Title}}</h1>
+<h2>Would you like to save as a json file?</h2>
+<form action="{{url_for('saveScrape')}}" method="post">
+          <p> Enter file path to save document in: </p>
+          <p><input type="text" name="save"/> {{Validation}}</p>
+          <p> Enter name of save file (no file extension): </p>
+          <input type="text" name="filename"/>
+          <input type="submit" value="Save"/>
+</form>
+<h2>Would you like to search for a specific title?</h2>
+<form action="{{url_for('findScrape')}}" method="post">
+          <p> Enter book name: </p>
+          <input type="text" name="find"/>
+          <input type="submit" value="Search"/>
+</form>
+<br>
+	{% for table in tables %}
+		{{ table|safe }}
+	{% endfor %}
+{% endblock %}

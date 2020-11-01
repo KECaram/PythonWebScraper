@@ -1,0 +1,64 @@
+<!-- Keith Caram
+ INFO.305.061: Survey of Python, Perl, and PHP
+ Assignment #5 - Python Web App
+                                    Program Summary
+This is the home page of the my web scraper, it contains the layout and display for the home
+page of the app including a form, radio buttons, and error checking for all inputs with displayed
+error messages.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <title>{% block title %}Home{% endblock %}</title>
+  </head>
+  <body>
+      <div class="sidebar">
+        <a href="/">Home</a>
+      </div>
+    <div class="main">
+      {% block content %}
+        <h1>Book Scraper!</h1>
+        <p>This site will scrape the titles, prices, ratings, and book urls from the sandbox scraping site <a href="http://books.toscrape.com/">books.toscrape.com</a></p>
+        <form action="{{url_for('listView')}}" method="post">
+          <h4> Enter pages to scrape: </h4>
+          <p>(Can only search and save data for the first 5 pages scraped)</p>
+          <h5>Start Page</h5>
+          <input type="text" name="pgs1"/>
+          <br>
+          <h5>End Page</h5>
+          <input type="text" name="pgs2"/>
+          <input type="submit" value="Scrape!"/>
+          {{Invalid}}
+        <br>
+        <br>
+        <h4>How would you like to sort your data?</h4>
+          <input type="radio" id="title" name="sort" value="title" checked>
+          <label for="title">Title</label><br>
+          <input type="radio" id="price" name="sort" value="price">
+          <label for="price">Price</label><br>
+          <input type="radio" id="rating" name="sort" value="rating">
+          <label for="rating">Rating (This will just group by rating)</label><br>
+          <input type="radio" id="default" name="sort" value="default">
+          <label for="default">Don't Sort</label>
+        </form>
+      {% endblock %}
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
